@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Implementation-Version: 1.0.0
+rabbit: rabbit
+rabbit-send: rabbit-send
+Main-Class: com.rabbitmq.Send
+

@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+group 'rabbitMQ'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.rabbitmq:amqp-client:5.5.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    baseName = 'rabbit'
+    version =  '1.0.0'
+    manifest {
+        attributes("rabbit": "rabbit",
+                "Implementation-Version": "1.0.0",
+                "Main-Class": "com.rabbitmq.Recieve"
+        )
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+jar {
+    baseName = 'rabbit-send'
+    version =  '1.0.0'
+    manifest {
+        attributes("rabbit-send": "rabbit-send",
+                "Implementation-Version": "1.0.0",
+                "Main-Class": "com.rabbitmq.Send"
+        )
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
